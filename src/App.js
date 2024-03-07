@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import AddTask from "./components/AddTask";
+import EditTask from "./components/EditTask";
+import ErrorBoundary from "./components/ErrorBoundary";
+import TaskList from "./components/TaskList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <ErrorBoundary>
+          <BrowserRouter>
+            <Routes>
+              <Route exact path="/" element={<TaskList />} />
+              <Route exact path="/tasks" element={<TaskList />} />
+              <Route exact path="/task/:taskId" element={<EditTask />} />
+              <Route exact path="/add-task" element={<AddTask />} />
+            </Routes>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </div>
+    );
+  }
 }
-
 export default App;
