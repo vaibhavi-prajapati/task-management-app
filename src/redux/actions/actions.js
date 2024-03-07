@@ -7,7 +7,6 @@ export const addTaskAction = (task) => {
     task.id = Date.now();
     addTask(task);
     dispatch(success(task));
-    dispatch(errorAlert(res?.message));
   };
   function request(task) {
     return { type: types.ADD_TASK_REQUEST, task };
